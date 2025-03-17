@@ -36,10 +36,10 @@ local Window = Rayfield:CreateWindow({
 
 local Tab = Window:CreateTab("Main", 9481286207) -- Title, Image
 
-local Section = Tab:CreateSection("ESP (Visibility)")
+local Section = Tab:CreateSection("Visibility")
 
 local Button = Tab:CreateButton({
-   Name = "FullBright",
+   Name = "FullBright (its over, i just got wallhacks)",
    Callback = function()
 Rayfield:Notify({
    Title = "FullBright Activated.",
@@ -68,30 +68,11 @@ Atmosphere.Decay = Color3.fromRGB(255, 255, 255)
 })
 
 local Button = Tab:CreateButton({
-   Name = "Infinite Stamina",
+   Name = "Visible Chat (Free Gamepasd reel🤯)",
    Callback = function()
-   while true do
-    local player = game.Players.LocalPlayer
-    local stamina = player:FindFirstChild("Stamina") -- Assuming there's a Stamina value in the player
-    if stamina then
-        stamina.Value = 1000 -- Keep stamina at 1000
-    end
-    wait() -- Prevents freezing, but you can use `wait(0.1)` for better performance
-end
-   end,
-})
-
-local Button = Tab:CreateButton({
-   Name = "Visible Chat(Free Communicate🤯)",
-   Callback = function()
-   local player = game:GetService("Players").LocalPlayer
-
--- Wait for the chat UI to load
-repeat wait() until player:FindFirstChild("PlayerGui") and player.PlayerGui:FindFirstChild("Chat")
-
-local chatWindow = player.PlayerGui.Chat
-
--- Make sure the chat window is visible
-chatWindow.Enabled = true
+   local ChatService = game:GetService("Chat")
+ChatService:RegisterChatCallback(Enum.ChatCallbackType.OnCreatingChatWindow, function()
+	return {BubbleChatEnabled = true, ClassicChatEnabled = true}
+end)
    end,
 })
