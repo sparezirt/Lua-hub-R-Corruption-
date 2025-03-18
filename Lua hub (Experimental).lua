@@ -68,11 +68,17 @@ Atmosphere.Decay = Color3.fromRGB(255, 255, 255)
 })
 
 local Button = Tab:CreateButton({
-   Name = "Visible Chat (Free Gamepasd reel🤯)",
+   Name = "stememna unlimited (sonic)",
    Callback = function()
-   local ChatService = game:GetService("Chat")
-ChatService:RegisterChatCallback(Enum.ChatCallbackType.OnCreatingChatWindow, function()
-	return {BubbleChatEnabled = true, ClassicChatEnabled = true}
+   local player = game.Players.LocalPlayer
+local runningSystem = player:WaitForChild("RunningSystem") -- Get RunningSystem
+local stamina = runningSystem:WaitForChild("Stamina") -- Get Stamina value
+
+-- Prevent stamina from decreasing on the client
+stamina.Changed:Connect(function()
+    if stamina.Value < 100 then
+        stamina.Value = 100 -- Lock it at full stamina
+    end
 end)
    end,
 })
