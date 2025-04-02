@@ -69,7 +69,7 @@ Atmosphere.Decay = Color3.fromRGB(255, 255, 255)
 
 local Toggle = Tab:CreateToggle({
    Name = "Chat Toggle (me spy hahaha)",
-   CurrentValue = togglechat
+   CurrentValue = skibiditoiletchat
    Callback = function(state)
 Rayfield:Notify({
    Title = " Chat Toggle Activated.",
@@ -78,10 +78,11 @@ Rayfield:Notify({
    Image = 0,
 })
 
-togglechat = state
- 				while togglechat do
+skibididtoiletchat = state
+ 				while skibididtoiletchat do
  					game:GetService("TextChatService"):WaitForChild("ChatWindowConfiguration").Enabled = state
  					task.wait(1)
-         end         
+         end
+
    end,
 })
