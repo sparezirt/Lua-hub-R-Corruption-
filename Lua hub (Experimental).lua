@@ -2,7 +2,7 @@ local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
 local Window = Rayfield:CreateWindow({
    Name = "🔲 Lua Hub (Experimental)",
-   Icon = 915326045, -- Icon in Topbar. Can use Lucide Icons (string) or Roblox Image (number). 0 to use no icon (default).
+   Icon = 0, -- Icon in Topbar. Can use Lucide Icons (string) or Roblox Image (number). 0 to use no icon (default).
    LoadingTitle = "Lua hub Script Very Op",
    LoadingSubtitle = "Loading..",
    Theme = "Ocean", -- Check https://docs.sirius.menu/rayfield/configuration/themes
@@ -67,18 +67,21 @@ Atmosphere.Decay = Color3.fromRGB(255, 255, 255)
    end,
 })
 
-local Button = Tab:CreateButton({
-   Name = "stememna unlimited (sonic)",
-   Callback = function()
-   local player = game.Players.LocalPlayer
-local runningSystem = player:WaitForChild("RunningSystem") -- Get RunningSystem
-local stamina = runningSystem:WaitForChild("Stamina") -- Get Stamina value
+local Toggle = Tab:CreateToggle({
+   Name = "Chat Toggle (me spy hahaha)",
+   CurrentValue = togglechat
+   Callback = function(state)
+Rayfield:Notify({
+   Title = " Chat Toggle Activated.",
+   Content = "Chat Toggle is now activated, go spy people lol",
+   Duration = 2,
+   Image = 0,
+})
 
--- Prevent stamina from decreasing on the client
-stamina.Changed:Connect(function()
-    if stamina.Value < 100 then
-        stamina.Value = 100 -- Lock it at full stamina
-    end
-end)
+togglechat = state
+ 				while togglechat do
+ 					game:GetService("TextChatService"):WaitForChild("ChatWindowConfiguration").Enabled = state
+ 					task.wait(1)
+         end         
    end,
 })
